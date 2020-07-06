@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
-@login_required
+
 def clothings_index(request):
     clothings = Clothing.objects.all()
     return render(request, 'clothings/index.html', {'clothings': clothings})
@@ -27,7 +27,7 @@ def clothings_detail(request, clothing_id):
   # Instantiate FeedingForm to be rendered in the template
   return render(request, 'clothings/detail.html', {
     # Pass the cat and feeding_form as context
-    'clothing': clothing, 
+    'cloth': clothing, 
     # Add the toys to be displayed
     # 'toys': toys_cat_doesnt_have
   })
@@ -35,7 +35,7 @@ def clothings_detail(request, clothing_id):
 
 class ClothingCreate(LoginRequiredMixin, CreateView):
   model = Clothing
-  fields = ['name','brand','description','size']
+  fields = ['name','category','brand','description','size']
 
   def form_valid(self, form):
     # Assign the logged in user
