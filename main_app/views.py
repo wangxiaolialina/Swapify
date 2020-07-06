@@ -23,8 +23,9 @@ def clothings_index(request):
 @login_required
 def myclothings_index(request):
     myclothings = Clothing.objects.filter(user=request.user)
+    myshoes = Shoe.objects.filter(user=request.user)
     return render(request, 'clothings/myindex.html',
-                  {'myclothings': myclothings})
+                  {'myclothings': myclothings,'myshoes': myshoes })
 
 
 @login_required
@@ -91,4 +92,15 @@ class ShoeList(ListView):
 
 class ShoeDetail(LoginRequiredMixin, DetailView):
     model = Shoe
+
+
+class ShoeCreate(LoginRequiredMixin, CreateView):
+    model = Shoe
+    fields = ['name', 'brand', 'color','shoe_size','description' ]
+
+    def form_valid(self, form):
+        # Assign the logged in user
+        form.instance.user = self.request.user
+        # Let the CreateView do its job as usual
+        return super().form_valid(form)
 

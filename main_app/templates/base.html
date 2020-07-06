@@ -29,12 +29,11 @@
           <ul class="right">
             <li><a href="/">Home</a></li>
             <li><a href="{% url 'index' %}">View All Clothings</a></li>
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'myindex' %}">View My Clothings</a></li>
-            <li><a href="{% url 'clothings_create' %}">Add Clothing</a></li>
-
             <li><a href="{% url 'shoes_list' %}">View All Shoes</a></li>
-
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'myindex' %}">View My Items</a></li>
+            <li><a href="{% url 'clothings_create' %}">Add Clothing</a></li>
+            <li><a href="{% url 'shoes_create' %}">Add Shoes</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
