@@ -18,9 +18,13 @@ class Shoe(models.Model):
                                  choices=SHOESIZES,
                                  default=SHOESIZES[2][0])
     description = models.TextField(max_length=250, blank = True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('shoes_detail', kwargs={'pk': self.id})
 
 
 class Clothing(models.Model):

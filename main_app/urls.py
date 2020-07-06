@@ -19,6 +19,9 @@ urlpatterns = [
          name='clothings_delete'),
     path('shoes/', views.ShoeList.as_view(), name='shoes_list'),
     path('shoes/<int:pk>', views.ShoeDetail.as_view(), name='shoes_detail'),
+    path('shoes/create/',
+         views.ShoeCreate.as_view(),
+         name='shoes_create'),
+         
 
-
-]
+]   

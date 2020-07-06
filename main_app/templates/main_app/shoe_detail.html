@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <h1>Shoe Details</h1>
 <div class="row">
   <div class="col s6 col-offset-3">
@@ -8,7 +7,7 @@
         <span class="card-title">{{ shoe.name }}</span>
         <p>Color: {{ shoe.color }}</p>
         <p>Brand: {{ shoe.brand }}</p>
-        <p>Size: {{ shoe.size }}</p>
+        <p>Size: {{ shoe.shoe_size }}</p>
         <p>Description: {{ shoe.description }}</p>
       </div>
     </div>

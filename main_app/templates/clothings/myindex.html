@@ -1,10 +1,12 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
-<h1>My Clothing List</h1>
-{% for cloth in myclothings %}
-  <div class="card">
-    <a href="{% url 'detail' cloth.id %}">
+<h1>My Clothing</h1>
+{% if not myclothings%}
+<p>No Clothes yet !</p>
+<a href="{% url 'clothings_create' %}">ADD CLOTHES</a>
+{% else %} {% for cloth in myclothings %}
+<div class="card">
+  <a href="{% url 'detail' cloth.id %}">
     <div class="card-content">
       <span class="card-title">{{ cloth.name }}</span>
       <p>Category: {{ cloth.category }}</p>
@@ -13,6 +15,5 @@
       <p>Description: {{ cloth.description }}</p>
     </div>
   </a>
-  </div>
-  {% endfor %} {% endblock %}
-</a>
+</div>
+{% endfor %} {% endif %} {% endblock %}
