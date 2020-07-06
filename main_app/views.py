@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from django.views.generic import ListView, DetailView
+
 from .models import Clothing, Shoe, Photo
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -80,3 +83,12 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+
+class ShoeList(ListView):
+    model = Shoe
+
+
+class ShoeDetail(LoginRequiredMixin, DetailView):
+    model = Shoe
+
