@@ -7,11 +7,15 @@
     <div class="col s6">
         <div class="card">
             <div class="card-content">
-            <span class="card-title">{{ cloth.name }}</span>
-            <p>Category: {{ cloth.category }}</p>
-            <p>Brand: {{ cloth.brand }}</p>
-            <p>Size: {{ cloth.size}}</p>
-            <p>Description: {{ cloth.description }}</p>
+                <span class="card-title">{{ cloth.name }}</span>
+                <p>Category: {{ cloth.category }}</p>
+                <p>Brand: {{ cloth.brand }}</p>
+                <p>Size: {{ cloth.size}}</p>
+                <p>Description: {{ cloth.description }}</p>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'clothings_update' cloth.id %}">Edit</a>
+                <a href="{% url 'clothings_delete' cloth.id %}">Delete</a>
             </div>
         </div>
     </div>
