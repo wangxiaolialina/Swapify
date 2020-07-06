@@ -11,12 +11,12 @@ SHOESIZES = (('6', 'Six'), ('7', 'Seven'), ('8', 'Eight'), ('9', 'Nine'),
 # Create your models here.
 class Shoe(models.Model):
     name = models.CharField(max_length=100)
-    brand = models.CharField(max_length=100)
-    color = models.CharField(max_length=100)
+    brand = models.CharField(max_length=100, blank = True)
+    color = models.CharField(max_length=100, blank = True)
     shoe_size = models.CharField(max_length=2,
                                  choices=SHOESIZES,
                                  default=SHOESIZES[2][0])
-    description = models.TextField(max_length=250)
+    description = models.TextField(max_length=250, blank = True)
 
     def __str__(self):
         return self.name
@@ -29,7 +29,7 @@ class Clothing(models.Model):
     size = models.CharField(max_length=2, choices=SIZES, default=SIZES[1][0])
     description = models.TextField(max_length=250)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    shoes = models.ManyToManyField(Shoe)
+    shoes = models.ManyToManyField(Shoe, blank = True )
 
     def __str__(self):
         return f"{self.name} - Size {self.get_size_display()}"
