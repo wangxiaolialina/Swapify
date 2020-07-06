@@ -12,6 +12,7 @@ SHOESIZES = (('6', 'Six'), ('7', 'Seven'), ('8', 'Eight'), ('9', 'Nine'),
 class Shoe(models.Model):
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=100)
+    color = models.CharField(max_length=100)
     shoe_size = models.CharField(max_length=2,
                                  choices=SHOESIZES,
                                  default=SHOESIZES[2][0])
@@ -31,7 +32,7 @@ class Clothing(models.Model):
     shoes = models.ManyToManyField(Shoe)
 
     def __str__(self):
-        return f"{self.get_size_display()} on {self.name}"
+        return f"{self.name} - Size {self.get_size_display()}"
 
 
 class Photo(models.Model):
