@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Clothing Details</h1>
+
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+            <span class="card-title">{{ cloth.name }}</span>
+            <p>Category: {{ cloth.category }}</p>
+            <p>Brand: {{ cloth.brand }}</p>
+            <p>Size: {{ cloth.size}}</p>
+            <p>Description: {{ cloth.description }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

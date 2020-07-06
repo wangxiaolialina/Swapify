@@ -1,7 +1,8 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
 <h1>My Clothing List</h1>
-{% for cloth in clothings %}
+{% for cloth in myclothings %}
   <div class="card">
     <a href="{% url 'detail' cloth.id %}">
     <div class="card-content">
