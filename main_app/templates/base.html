@@ -31,6 +31,7 @@
             {% if user.is_authenticated %}
             <li><a href="{% url 'index' %}">View All Clothings</a></li>
             <li><a href="{% url 'myindex' %}">View My Clothings</a></li>
+            <li><a href="{% url 'clothings_create' %}">Add Clothing</a></li>
             <li><a href="{% url 'logout' %}">Log Out</a></li>
             {% else %}
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
