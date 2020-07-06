@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Clothing, Shoe, Photo
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -18,6 +19,29 @@ def clothings_index(request):
 def myclothings_index(request):
     myclothings = Clothing.objects.filter(user=request.user)
     return render(request, 'clothings/myindex.html', {'myclothings': myclothings})
+
+def clothings_detail(request, clothing_id):
+  clothing = Clothing.objects.get(id=clothing_id)
+  # Get the toys the cat doesn't have
+#   toys_cat_doesnt_have = Toy.objects.exclude(id__in = cat.toys.all().values_list('id'))
+  # Instantiate FeedingForm to be rendered in the template
+  return render(request, 'clothings/detail.html', {
+    # Pass the cat and feeding_form as context
+    'clothing': clothing, 
+    # Add the toys to be displayed
+    # 'toys': toys_cat_doesnt_have
+  })
+
+
+class ClothingCreate(LoginRequiredMixin, CreateView):
+  model = Clothing
+  fields = ['name','brand','description','size']
+
+  def form_valid(self, form):
+    # Assign the logged in user
+    form.instance.user = self.request.user
+    # Let the CreateView do its job as usual
+    return super().form_valid(form)
 
 def signup(request):
     error_message = ''
@@ -37,3 +61,4 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
