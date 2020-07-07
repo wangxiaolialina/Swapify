@@ -21,11 +21,11 @@
 {% endif %}
 
 <h1>My Shoes</h1>
-{% if not shoe_list%}
+{% if not myshoes%}
 <p>No Shoes yet!</p>
 <a href="{% url 'shoes_create' %}">ADD SHOES</a>
 {% else %}
-{% for shoe in shoe_list %}
+{% for shoe in myshoes %}
 <div class="card">
   <a href="{% url 'shoes_detail' shoe.id %}">
     <div class="card-content">
