@@ -28,7 +28,7 @@ urlpatterns = [
          name='shoes_delete'),
     path('clothings/<int:clothing_id>/add_photo/',
          views.add_clothing_photo, name='add_clothing_photo'),
-    # path('shoes/<int:shoe_id>/add_photo/',
-    #      views.add_shoe_photo, name='add_shoe_photo')
+    path('shoes/<int:shoe_id>/add_photo/',
+         views.add_shoe_photo, name='add_shoe_photo')
 
 ]
