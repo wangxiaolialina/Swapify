@@ -35,7 +35,7 @@ def myclothings_index(request):
 def clothings_detail(request, clothing_id):
     clothing = Clothing.objects.get(id=clothing_id)
     # Get the toys the cat doesn't have
-    #   toys_cat_doesnt_have = Toy.objects.exclude(id__in = cat.toys.all().values_list('id'))
+    shoes_clothing_doesnt_have = Shoe.objects.exclude(id__in = clothing.shoes.all().values_list('id'))
     # Instantiate FeedingForm to be rendered in the template
     return render(
         request,
@@ -44,7 +44,7 @@ def clothings_detail(request, clothing_id):
             # Pass the cat and feeding_form as context
             'cloth': clothing,
             # Add the toys to be displayed
-            # 'toys': toys_cat_doesnt_have
+            'shoes': shoes_clothing_doesnt_have
         })
 
 
@@ -161,3 +161,10 @@ def add_shoe_photo(request, shoe_id):
         except:
             print('An error occurred uploading file to S3')
     return redirect('shoes_detail', pk=shoe_id)
+
+#add association
+@login_required
+def assoc_shoe(request, clothing_id, shoe_id):
+    # Note that you can pass a toy's id instead of the whole object
+    Clothing.objects.get(id=clothing_id).shoes.add(shoe_id)
+    return redirect('detail', clothing_id=clothing_id)
