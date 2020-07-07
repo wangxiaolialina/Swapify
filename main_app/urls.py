@@ -29,6 +29,8 @@ urlpatterns = [
     path('clothings/<int:clothing_id>/add_photo/',
          views.add_clothing_photo, name='add_clothing_photo'),
     path('shoes/<int:shoe_id>/add_photo/',
-         views.add_shoe_photo, name='add_shoe_photo')
+         views.add_shoe_photo, name='add_shoe_photo'),
+    path('clothings/<int:clothing_id>/assoc_shoe/<int:shoe_id>/',
+         views.assoc_shoe, name='assoc_shoe'),
 
 ]
