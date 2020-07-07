@@ -5,7 +5,7 @@ Swapify is a platform for users to exchange second-hand clothing and shoes.
 
 ### Background Info:
 Fast fashion is prevalent in our society. 
-Trendy clothes are quickly manufactured in countries where workers are not paid a fair wage and work in terrible conditions. It is then sold to consumers, who wear the garment until it is out of style and they discard/donate it. We want to intercept the life cycle of a piece of clothing or shoe and give it a new owner. Another person's trash is another person's treasure.
+Trendy clothes are quickly manufactured in countries where workers are not paid a fair wage and work in terrible conditions. It is then sold to consumers, who wear the garment until it is out of style or of use and they will discard it. We want to intercept the life cycle of a piece of clothing or shoe and give it a new owner. One person's trash is another person's treasure.
 
 
 ## Screenshots of Application:
