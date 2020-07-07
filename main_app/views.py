@@ -103,3 +103,13 @@ class ShoeCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         # Let the CreateView do its job as usual
         return super().form_valid(form)
+
+
+class ShoeUpdate(LoginRequiredMixin, UpdateView):
+    model = Shoe
+    fields = ['brand', 'color', 'description', 'shoe_size']
+
+
+class ShoeDelete(LoginRequiredMixin, DeleteView):
+    model = Shoe
+    success_url = '/shoes/'
