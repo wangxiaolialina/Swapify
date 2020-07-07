@@ -2,7 +2,6 @@
 {% block content %}
 
 <h1>Clothing Details</h1>
-
 <div class="row">
     <div class="col s6">
         <div class="card">
@@ -36,11 +35,9 @@
 
         </div>
     </div>
-</div>
 
-<hr>
-<div class=“row”>
-    <div class="col s6">
+<div class="col s6">
+    <div>
         <h3>{{ cloth.name }}’s Shoes</h3>
         {% if cloth.shoes.count %}
         {% for shoe in cloth.shoes.all %}
@@ -63,7 +60,7 @@
         {% endif %}
     </div>
 
-    <div class="col s6">
+    <div>
         <h3>Available Shoes</h3>
         {% if shoes.count %}
         {% for shoe in shoes.all %}
@@ -87,6 +84,7 @@
         <h5>{{cloth.name}} Already Has All Shoes Available</h5>
         {% endif %}
     </div>
+</div>
 </div>
 
 {% endblock %}
