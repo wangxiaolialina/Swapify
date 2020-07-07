@@ -32,5 +32,6 @@ urlpatterns = [
          views.add_shoe_photo, name='add_shoe_photo'),
     path('clothings/<int:clothing_id>/assoc_shoe/<int:shoe_id>/',
          views.assoc_shoe, name='assoc_shoe'),
+     path('clothings/<int:clothing_id>/unassoc_shoe/<int:shoe_id>/', views.unassoc_shoe, name='unassoc_shoe'),
 
 ]
