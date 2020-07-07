@@ -2,9 +2,10 @@
 
 <h1>My Clothing</h1>
 {% if not myclothings%}
-<p>No Clothes yet !</p>
+<p>No Clothes yet!</p>
 <a href="{% url 'clothings_create' %}">ADD CLOTHES</a>
-{% else %} {% for cloth in myclothings %}
+{% else %}
+{% for cloth in myclothings %}
 <div class="card">
   <a href="{% url 'detail' cloth.id %}">
     <div class="card-content">
@@ -16,4 +17,27 @@
     </div>
   </a>
 </div>
-{% endfor %} {% endif %} {% endblock %}
+{% endfor %}
+{% endif %}
+
+<h1>My Shoes</h1>
+{% if not shoe_list%}
+<p>No Shoes yet!</p>
+<a href="{% url 'shoes_create' %}">ADD SHOES</a>
+{% else %}
+{% for shoe in shoe_list %}
+<div class="card">
+  <a href="{% url 'shoes_detail' shoe.id %}">
+    <div class="card-content">
+      <span class="card-title">{{ shoe.name }}</span>
+      <p>Color: {{ shoe.color }}</p>
+      <p>Brand: {{ shoe.brand }}</p>
+      <p>Size: {{ shoe.shoe_size }}</p>
+      <p>Description: {{ shoe.description }}</p>
+    </div>
+  </a>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
