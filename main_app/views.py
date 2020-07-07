@@ -160,4 +160,4 @@ def add_shoe_photo(request, shoe_id):
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('shoes_detail', shoe_id=shoe_id)
+    return redirect('shoes_detail', pk=shoe_id)
