@@ -168,3 +168,9 @@ def assoc_shoe(request, clothing_id, shoe_id):
     # Note that you can pass a toy's id instead of the whole object
     Clothing.objects.get(id=clothing_id).shoes.add(shoe_id)
     return redirect('detail', clothing_id=clothing_id)
+
+
+@login_required
+def unassoc_shoe(request, clothing_id, shoe_id):
+  Clothing.objects.get(id=clothing_id).shoes.remove(shoe_id)
+  return redirect('detail', clothing_id=clothing_id)
