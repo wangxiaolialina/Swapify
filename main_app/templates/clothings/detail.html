@@ -16,8 +16,26 @@
             <div class="card-action">
                 <a href="{% url 'clothings_update' cloth.id %}">Edit</a>
                 <a href="{% url 'clothings_delete' cloth.id %}">Delete</a>
+                
             </div>
         </div>
+    {% if cloth.url %}
+    <img class="responsive-img card-panel" src="{{cloth.url}}" />
+    {% else %}
+    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endif %}
+    <form
+    action="{% url 'add_clothing_photo' cloth.id %}"
+    enctype="multipart/form-data"
+    method="POST"
+    class="card-panel"
+    >
+    {% csrf_token %}
+    <input type="file" name="photo-file" />
+    <br /><br />
+    <input type="submit" class="btn" value="Upload Photo" />
+    </form>
+</div>
     </div>
 </div>
 {% endblock %}
