@@ -22,6 +22,7 @@
             {% else %}
             <div class="card-panel teal-text center-align">No Photos Uploaded</div>
             {% endif %}
+            {% if request.user == cloth.user %}
             <form action="{% url 'add_clothing_photo' cloth.id %}" enctype="multipart/form-data" method=“POST"
                 class="card-panel">
                 {% csrf_token %}
@@ -29,6 +30,7 @@
                 <br /><br />
                 <input type="submit" class="btn" value="Upload Photo" />
             </form>
+            {% endif %}
         </div>
     </div>
 <div class="col s6">
@@ -41,10 +43,18 @@
                 <span class="card-title">
                     A <span style="color: {{ shoe.color }}">{{ shoe.color }}</span> {{ shoe.name }}
                 </span>
+                {% if request.user == cloth.user %}
+                <div class="card-action">
+                    <form action="{% url 'unassoc_shoe' cloth.id shoe.id %}" method="post">
+                        {% csrf_token %}
+                      <button type="submit" class="btn">Remove</button>
+                    </form>
+                  </div>
+                  {% endif %}
             </div>
             {% if shoe.url %}
             <div class="card-action">
-                <img class=“responsive-img card-panel” src="{{shoe.url}}" />
+                <img class=“responsive-img card-panel” src="{{shoe.url}}" width=250px  />
             </div>
             {% endif %}
         </div>
@@ -64,12 +74,14 @@
                     {{shoe.name}}
                 </span>
             </div>
+            {% if request.user == cloth.user %}
             <div class="card-action">
                 <form action="{% url 'assoc_shoe' cloth.id shoe.id %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn">Add</button>
                 </form>
             </div>
+            {% endif %}
         </div>
         {% endfor %}
         {% else %}

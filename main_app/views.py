@@ -31,12 +31,9 @@ def myclothings_index(request):
     })
 
 
-@login_required
 def clothings_detail(request, clothing_id):
     clothing = Clothing.objects.get(id=clothing_id)
-    # Get the toys the cat doesn't have
     shoes_clothing_doesnt_have = Shoe.objects.exclude(id__in = clothing.shoes.all().values_list('id'))
-    # Instantiate FeedingForm to be rendered in the template
     return render(
         request,
         'clothings/detail.html',
