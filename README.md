@@ -16,9 +16,22 @@ Trendy clothes are quickly manufactured in countries where workers are not paid 
 
 ## Getting Started:
 
+### Planning:
+- **Entity Relationship Diagram (ERD):**
+
+
+- **User Stories:**
+
+| As a Visitor: | As an Authenticated User: |
+| -----  | ------ |
+| AAV, I want to view all products and their details | AAU, I want to add, update, and delete my products I post |
+| | AAU, I want to add and remove associated shoes |
+
+- **Wireframes List:**
+
 ## Next Steps: Future Planned Enhancements:
-- Include more second-hand items for users to exchange. E.g. Books, electronics
-- Implement a token-based system: Instead of users meeting up and exchanging their items through barter or cash, a token system could be implemented.
+- **Include more second-hand items for users to exchange:** E.g. Books, electronics
+- **Implement a token-based system:** Instead of users meeting up and exchanging their items through barter or cash, a token system could be implemented.
 - Add reviews: 
 
 
