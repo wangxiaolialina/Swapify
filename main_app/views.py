@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
 from django.views.generic import ListView, DetailView
-
 from .models import Clothing, Shoe, Photo
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
@@ -24,8 +22,10 @@ def clothings_index(request):
 def myclothings_index(request):
     myclothings = Clothing.objects.filter(user=request.user)
     myshoes = Shoe.objects.filter(user=request.user)
-    return render(request, 'clothings/myindex.html',
-                  {'myclothings': myclothings,'myshoes': myshoes })
+    return render(request, 'clothings/myindex.html', {
+        'myclothings': myclothings,
+        'myshoes': myshoes
+    })
 
 
 @login_required
@@ -96,11 +96,10 @@ class ShoeDetail(LoginRequiredMixin, DetailView):
 
 class ShoeCreate(LoginRequiredMixin, CreateView):
     model = Shoe
-    fields = ['name', 'brand', 'color','shoe_size','description' ]
+    fields = ['name', 'brand', 'color', 'shoe_size', 'description']
 
     def form_valid(self, form):
         # Assign the logged in user
         form.instance.user = self.request.user
         # Let the CreateView do its job as usual
         return super().form_valid(form)
-
