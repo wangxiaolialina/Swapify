@@ -28,7 +28,7 @@ class Shoe(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('shoes_detail', kwargs={'pk': self.id})
+        return reverse('shoes_detail', kwargs={'shoe_id': self.id})
 
 
 class Clothing(models.Model):
