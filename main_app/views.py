@@ -15,6 +15,9 @@ BUCKET = 'teamswapify'
 def home(request):
     return render(request, 'home.html')
 
+def about(request):
+    return render(request, 'about.html')
+
 
 def clothings_index(request):
     clothings = Clothing.objects.all()
