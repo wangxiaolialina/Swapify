@@ -121,6 +121,7 @@ class ShoeCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         # Let the CreateView do its job as usual
         return super().form_valid(form)
+    
 
 
 class ShoeUpdate(LoginRequiredMixin, UpdateView):
@@ -200,4 +201,4 @@ def unassoc_shoe(request, clothing_id, shoe_id):
 @login_required
 def unassoc_clothing(request, clothing_id, shoe_id):
     Shoe.objects.get(id=shoe_id).clothing_set.remove(clothing_id)
-    return redirect('shoe_detail', shoe_id=shoe_id)
+    return redirect('shoes_detail', shoe_id=shoe_id)
