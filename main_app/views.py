@@ -36,8 +36,11 @@ def myclothings_index(request):
 
 def clothings_detail(request, clothing_id):
     clothing = Clothing.objects.get(id=clothing_id)
-    shoes_clothing_doesnt_have = Shoe.objects.exclude(id__in = clothing.shoes.all().values_list('id'))
-    usershoes = Shoe.objects.filter(user=request.user)
+    shoes_clothing_doesnt_have = Shoe.objects.exclude(id__in = clothing.shoes.all().values_list('id'))  
+    if not request.user.is_anonymous:
+        usershoes = Shoe.objects.filter(user=request.user)
+    else:
+        usershoes = []
     return render(
         request,
         'clothings/detail.html',
