@@ -76,9 +76,10 @@
         {% endif %}
     </div>
     <div>
+        {%if cloth.user == request.user %}
         <h3>Available Shoes</h3>
-        {% if shoes.count %}
-        {% for shoe in shoes.all %}
+        {% if usershoes.count %}
+        {% for shoe in usershoes.all %}
         <div class="card">
             <div class="card-content">
                 <span class="card-title">
@@ -86,7 +87,7 @@
                     {{shoe.name}}
                 </span>
             </div>
-            {% if request.user == cloth.user %}
+            {% if request.user == shoe.user %}
             <div class="card-action">
                 <form action="{% url 'assoc_shoe' cloth.id shoe.id %}" method="post">
                     {% csrf_token %}
@@ -98,6 +99,7 @@
         {% endfor %}
         {% else %}
         <h5>{{cloth.name}} Already Has All Shoes Available</h5>
+        {% endif %}
         {% endif %}
     </div>
 </div>

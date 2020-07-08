@@ -37,6 +37,7 @@ def myclothings_index(request):
 def clothings_detail(request, clothing_id):
     clothing = Clothing.objects.get(id=clothing_id)
     shoes_clothing_doesnt_have = Shoe.objects.exclude(id__in = clothing.shoes.all().values_list('id'))
+    usershoes = Shoe.objects.filter(user=request.user)
     return render(
         request,
         'clothings/detail.html',
@@ -44,7 +45,8 @@ def clothings_detail(request, clothing_id):
             # Pass the cat and feeding_form as context
             'cloth': clothing,
             # Add the toys to be displayed
-            'shoes': shoes_clothing_doesnt_have
+            'shoes': shoes_clothing_doesnt_have,
+            'usershoes':usershoes
         })
 
 
@@ -76,7 +78,7 @@ class ClothingCreate(LoginRequiredMixin, CreateView):
 
 class ClothingUpdate(LoginRequiredMixin, UpdateView):
     model = Clothing
-    fields = ['category', 'brand', 'description', 'size']
+    fields = ['name','category', 'brand', 'description', 'size']
 
 
 class ClothingDelete(LoginRequiredMixin, DeleteView):
@@ -126,7 +128,7 @@ class ShoeCreate(LoginRequiredMixin, CreateView):
 
 class ShoeUpdate(LoginRequiredMixin, UpdateView):
     model = Shoe
-    fields = ['brand', 'color', 'description', 'shoe_size']
+    fields = ['name','brand', 'color', 'description', 'shoe_size']
 
 
 class ShoeDelete(LoginRequiredMixin, DeleteView):
@@ -176,7 +178,7 @@ def add_shoe_photo(request, shoe_id):
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('shoes_detail', pk=shoe_id)
+    return redirect('shoes_detail', shoe_id=shoe_id)
 
 #add association
 @login_required
