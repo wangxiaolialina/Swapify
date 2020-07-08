@@ -11,6 +11,12 @@
                 <p>Size: {{ cloth.size}}</p>
                 <p>Description: {{ cloth.description }}</p>
             </div>
+            <div class="card-action">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">Swap Me</button>
+                </form>
+            </div>
             {% if request.user == cloth.user %}
             <div class="card-action">
                 <a href="{% url 'clothings_update' cloth.id %}">Edit</a>
@@ -23,7 +29,7 @@
             <div class="card-panel teal-text center-align">No Photos Uploaded</div>
             {% endif %}
             {% if request.user == cloth.user %}
-            <form action="{% url 'add_clothing_photo' cloth.id %}" enctype="multipart/form-data" method=“POST"
+            <form action="{% url 'add_clothing_photo' cloth.id %}" enctype="multipart/form-data" method="POST"
                 class="card-panel">
                 {% csrf_token %}
                 <input type="file" name="photo-file" />
@@ -35,7 +41,13 @@
     </div>
 <div class="col s6">
     <div>
-        <h3>{{ cloth.name }}’s Shoes</h3>
+        <h3>Recommended Shoes</h3>
+        <div class="card-action">
+            <form action="" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Swap Me</button>
+            </form>
+        </div>
         {% if cloth.shoes.count %}
         {% for shoe in cloth.shoes.all %}
         <div class="card">
