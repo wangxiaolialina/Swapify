@@ -165,7 +165,7 @@
 
 # Planned future upgrades:
 
-- ### Add and display username, add and follow other sellers
+- ### Add and follow other sellers
 - ### Add Reviews and rate items
 - ### Add more categories to swap such as books, electronics and furniture.
 - ### Implement a token-based swap system. Users would be able to use tokens to swap items, give away tokens for a promotion, save tokens to purchase a bigger item.
