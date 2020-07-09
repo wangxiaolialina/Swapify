@@ -14,16 +14,53 @@ footer.page-footer {
 .text {
   margin-top:200px;
   padding-bottom: 15px;
-  background-color:rgb(255,182,193,0.8);
+  background-color:white;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
 }
-h1 {
-  color:black;
+h1,h3,h5 {
+  color:green;
 }
+
+
 
 li {
   font-weight: bold;
+}
+
+nav {
+  background-color: green;
+}
+
+.page-footer {
+  background-color: green;
+}
+
+.card-content {
+  color:green;
+}
+
+.btn {
+  background-color: green;
+}
+h3 {
+  margin:10px;
+}
+
+h5 {
+  margin:10px;
+}
+
+#mission {
+  font-size:30px;
+}
+
+p {
+  font-size: 18px;
+}
+
+li {
+  font-size: 20px;
 }
