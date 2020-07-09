@@ -8,7 +8,7 @@ Swapify is a fullstack Djanjo app performing CRUD operations and  applies one to
 ## Installation
 First, install the packages required to run the application:
 ## Homebrew (Mac Only)
-Homebrew is a package manager that we will use to install various command line tools in our class.
+Homebrew is a package manager that installs various command line tools easily.
 Open up terminal, and paste the following command to install Homebrew. You might be prompted to install XCode Command Line Tools during the install process.
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 If you are prompted to install the XCode CLI, say yes and your homebrew installation will continue.
