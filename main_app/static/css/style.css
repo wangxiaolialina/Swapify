@@ -12,19 +12,19 @@ footer.page-footer {
 }
 
 .text {
-  margin-top:200px;
+  margin-top: 200px;
   padding-bottom: 15px;
-  background-color:white;
+  background-color: white;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
 }
-h1,h3,h5 {
-  color:green;
+h1,
+h3,
+h5 {
+  color: green;
 }
-
-
 
 li {
   font-weight: bold;
@@ -39,22 +39,22 @@ nav {
 }
 
 .card-content {
-  color:green;
+  color: green;
 }
 
 .btn {
   background-color: green;
 }
 h3 {
-  margin:10px;
+  margin: 10px;
 }
 
 h5 {
-  margin:10px;
+  margin: 10px;
 }
 
 #mission {
-  font-size:30px;
+  font-size: 30px;
 }
 
 p {
