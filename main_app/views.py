@@ -56,6 +56,10 @@ def clothings_detail(request, clothing_id):
 def shoes_detail(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
     clothings_shoe_doesnt_have = Clothing.objects.exclude(id__in = shoe.clothing_set.all().values_list('id'))
+    if not request.user.is_anonymous:
+        userclothes = Clothing.objects.filter(user=request.user).exclude(id__in = shoe.clothing_set.all().values_list('id'))  
+    else:
+        userclothes = []
     return render(
         request,
         'main_app/shoe_detail.html',
@@ -64,6 +68,7 @@ def shoes_detail(request, shoe_id):
             'shoe': shoe,
             # Add the toys to be displayed
             'clothings': clothings_shoe_doesnt_have,
+            'userclothes':userclothes
         })
 
 
@@ -192,7 +197,7 @@ def assoc_shoe(request, clothing_id, shoe_id):
 
 
 @login_required
-def assoc_clothing(request, clothing_id, shoe_id):
+def assoc_clothing(request, shoe_id, clothing_id):
     # Note that you can pass a toy's id instead of the whole object
     Shoe.objects.get(id=shoe_id).clothing_set.add(clothing_id)
     return redirect('shoes_detail', shoe_id=shoe_id)
@@ -204,6 +209,6 @@ def unassoc_shoe(request, clothing_id, shoe_id):
     return redirect('detail', clothing_id=clothing_id)
 
 @login_required
-def unassoc_clothing(request, clothing_id, shoe_id):
+def unassoc_clothing(request, shoe_id, clothing_id):
     Shoe.objects.get(id=shoe_id).clothing_set.remove(clothing_id)
     return redirect('shoes_detail', shoe_id=shoe_id)
