@@ -2,86 +2,81 @@
 
 <h1>Shoe Details</h1>
 <div class="row">
-  <div class="col s6">
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">{{ shoe.name }}</span>
-        <p>Color: {{ shoe.color }}</p>
-        <p>Brand: {{ shoe.brand }}</p>
-        <p>Size: {{ shoe.shoe_size }}</p>
-        <p>Description: {{ shoe.description }}</p>
-      </div>
-      <div class="card-action">
-        <form action="" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn">Swap Me</button>
-        </form>
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ shoe.name }}</span>
+                <p>Color: {{ shoe.color }}</p>
+                <p>Brand: {{ shoe.brand }}</p>
+                <p>Size: {{ shoe.shoe_size }}</p>
+                <p>Description: {{ shoe.description }}</p>
+            </div>
+            <div class="card-action">
+                <form action="" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Swap Me</button>
+                </form>
+            </div>
+            {% if request.user == shoe.user %}
+            <div class="card-action">
+                <a href="{% url 'shoes_update' shoe.id %}">Edit</a>
+                <a href="{% url 'shoes_delete' shoe.id %}">Delete</a>
+            </div>
+            {% endif %}
+            {% if shoe.url %}
+            <img class="responsive-img card-panel" src="{{shoe.url}}" width=250px/>
+            {% else %}
+            <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+            {% endif %} {% if request.user == shoe.user %}
+            <form action="{% url 'add_shoe_photo' shoe.id %}" enctype="multipart/form-data" method="POST"
+                class="card-panel">
+                {% csrf_token %}
+                <input type="file" name="photo-file" />
+                <br /><br />
+                <input type="submit" class="btn" value="Upload Photo" />
+            </form>
+            {% endif %}
+        </div>
     </div>
-      {% if request.user == shoe.user %}
-      <div class="card-action">
-        <a href="{% url 'shoes_update' shoe.id %}">Edit</a>
-        <a href="{% url 'shoes_delete' shoe.id %}">Delete</a>
-      </div>
-      {% endif %}
-    {% if shoe.url %}
-    <img class="responsive-img card-panel" src="{{shoe.url}}" />
-    {% else %}
-    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endif %} {% if request.user == shoe.user %}
-    <form
-      action="{% url 'add_shoe_photo' shoe.id %}"
-      enctype="multipart/form-data"
-      method="POST"
-      class="card-panel"
-    >
-      {% csrf_token %}
-      <input type="file" name="photo-file" />
-      <br /><br />
-      <input type="submit" class="btn" value="Upload Photo" />
-    </form>
-  </div>
-  {% endif %}
-</div>
-</div>
 <div class="col s6">
     <div>
-      <h3>Recommended Clothing</h3>
-      <div class="card-action">
-        <form action="" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn">Swap Me</button>
-        </form>
-    </div>
-      {% if shoe.clothing_set.count %}
-      {% for cloth in shoe.clothing_set.all %}
-      <div class="card">
-          <div class="card-content">
-              <span class="card-title">{{ cloth.name }}</span>
-              {% if request.user == shoe.user %}
-              <div class="card-action">
-                  <form action="{% url 'unassoc_clothing' shoe.id cloth.id %}" method="post">
-                      {% csrf_token %}
-                    <button type="submit" class="btn">Remove</button>
-                  </form>
+        <h3>Recommended Clothing</h3>
+        <div class="card-action">
+            <form action="" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn">Swap Me</button>
+            </form>
+        </div>
+        {% if shoe.clothing_set.count %}
+        {% for cloth in shoe.clothing_set.all %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ cloth.name }}</span>
+                {% if request.user == shoe.user %}
+                <div class="card-action">
+                    <form action="{% url 'unassoc_clothing' shoe.id cloth.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Remove</button>
+                    </form>
                 </div>
                 {% endif %}
-          </div>
-          {% if cloth.url %}
-          <div class="card-action">
-              <img class=“responsive-img card-panel” src="{{cloth.url}}" width=250px  />
-          </div>
-          {% endif %}
-      </div>
-      {% endfor %}
-      {% else %}
-      <h5>No matching clothing :(</h5>
-      {% endif %}
-  </div>
-  <div>
-    {%if shoe.user == request.user %}
+            </div>
+            {% if cloth.url %}
+            <div class="card-action">
+                <img class=“responsive-img card-panel” src="{{cloth.url}}" width=250px  />
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <h5>No matching clothing :(</h5>
+        {% endif %}
+    </div>
+    <div>
+        {%if shoe.user == request.user %}
         <h3>Available Clothing</h3>
-      {% if clothing_set.count %}
-      {% for clothing in clothing_set.all %}
+        {% if clothing_set.count %}
+        {% for clothing in clothing_set.all %}
         <div class="card">
             <div class="card-content">
                 <span class="card-title">
@@ -100,9 +95,9 @@
         {% else %}
         <h5>{{shoe.name}} Already Has All Clothes Available</h5>
         {% endif %}
-    {% endif %}
+        {% endif %}
     </div>
-  </div>
-  </div>
+</div>
+</div>
 {% endblock %}
 
