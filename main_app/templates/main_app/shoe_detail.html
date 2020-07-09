@@ -5,7 +5,7 @@
     <div class="col s6">
         <div class="card">
             <div class="card-content">
-                <span class="card-title">{{ shoe.name }}</span>
+                <span class="card-title">{{ shoe.user }}</span>
                 <p>Color: {{ shoe.color }}</p>
                 <p>Brand: {{ shoe.brand }}</p>
                 <p>Size: {{ shoe.shoe_size }}</p>
@@ -75,8 +75,8 @@
     <div>
         {%if shoe.user == request.user %}
         <h3>Available Clothing</h3>
-        {% if clothing_set.count %}
-        {% for clothing in clothing_set.all %}
+      {% if userclothes and userclothes.count %}
+      {% for cloth in userclothes.all %}
         <div class="card">
             <div class="card-content">
                 <span class="card-title">
@@ -84,7 +84,7 @@
             </div>
             {% if request.user == cloth.user %}
             <div class="card-action">
-                <form action="{% url 'assoc_shoe' cloth.id shoe.id %}" method="post">
+                <form action="{% url 'assoc_clothing' shoe.id cloth.id %}" method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn">Add</button>
                 </form>
