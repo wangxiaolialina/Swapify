@@ -38,7 +38,7 @@ def clothings_detail(request, clothing_id):
     clothing = Clothing.objects.get(id=clothing_id)
     shoes_clothing_doesnt_have = Shoe.objects.exclude(id__in = clothing.shoes.all().values_list('id'))  
     if not request.user.is_anonymous:
-        usershoes = Shoe.objects.filter(user=request.user)
+        usershoes = Shoe.objects.filter(user=request.user).exclude(id__in = clothing.shoes.all().values_list('id'))  
     else:
         usershoes = []
     return render(
